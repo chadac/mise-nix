@@ -3,7 +3,12 @@
 [Nix](https://nixos.org) plugin for the [mise](https://mise.jdx.dev/) version manager.
 
 Enables installing packages via `nix` rather than using the regular
-`mise` builders. 
+`mise` plugins.
+
+Useful for those on Nix systems that still want to use `mise` and its
+associated features. It's also a bit less verbose than the generic
+`shell.nix` or `flake.nix` specification and allows mixing multiple
+versions of `nixpkgs` when needed.
 
 ## Install
 
