@@ -60,7 +60,7 @@ install_nix() {
 
   # TODO: support generalized references
   local ref
-  case $flake in
+  case $branch in
     *)
       ref="github:NixOS/nixpkgs/${branch}#${pkg}"
       ;;
