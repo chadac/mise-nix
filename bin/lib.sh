@@ -26,10 +26,18 @@ nix_build() {
         finaldir="$outdir"
         ;;
     esac
+    # otherwise just grab whatever we see first
     if [ "$finaldir" = "" ]; then
-      finaldir="$outdir"
+      if [ -d "$outdir/bin" ]; then
+        finaldir="$outdir"
+      fi
     fi
   done <<<"$output"
+
+  if [ "$finaldir" = "" ]; then
+    >&2 echo "invalid package: could not find output path with '/bin' directory; is this a tool?"
+    exit 1
+  fi
 
   ln -s "$finaldir" "$destdir"
 }
