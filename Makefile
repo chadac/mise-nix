@@ -1,5 +1,6 @@
 SH_SRCFILES = $(shell git ls-files "bin/*")
 SHFMT_BASE_FLAGS = -i 2 -ci
+CURRENT_DIR = $(shell pwd)
 
 fmt:
 	shfmt -w $(SHFMT_BASE_FLAGS) $(SH_SRCFILES)
@@ -12,3 +13,6 @@ format-check:
 lint:
 	shellcheck $(SH_SRCFILES)
 .PHONY: lint
+
+test:
+	docker run -v $(CURRENT_DIR):/mise/nix -w /mise/nix --rm nixos/nix /usr/bin/env bash -c "nix-channel --update && ./test.sh"
