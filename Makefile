@@ -15,4 +15,4 @@ lint:
 .PHONY: lint
 
 test:
-	docker run -v $(CURRENT_DIR):/mise/nix -w /mise/nix --rm nixos/nix /usr/bin/env bash -c "nix-channel --update && ./test.sh"
+	docker run -v ${PWD}:/mise/nix --rm nixos/nix /usr/bin/env bash -c 'nix-channel --update && /mise/nix/test.sh'

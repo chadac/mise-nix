@@ -2,20 +2,17 @@
 #!nix-shell -i bash -p bash mise
 # shellcheck shell=bash
 
-eval "$(mise activate bash)"
+set -e
 
-declare -a packages=(
-  shellcheck
-  shfmt
-  python3
-  nodejs
-  nixpkgs-unstable/shellcheck
-  release-23.11/shellcheck
-)
+# use shims since `mise activate` doesn't appear to work in a script
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+mise plugin install --force file:///mise/nix
 
-mise plugin install --force file://$PWD
+mise global nix@shfmt nix@shellcheck nix@python3 nix@python3Packages.pip
+mise install
 
-for package in "${packages[@]}"; do
-  echo "test install: $package"
-  mise install nix@$package
-done
+# assert everything is on the PATH
+shfmt --version
+shellcheck --version
+python --version
+pip --version
