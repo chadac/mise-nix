@@ -1,0 +1,27 @@
+[tools]
+nix = [
+  "shfmt",
+  "shellcheck",
+  "podman",
+]
+
+[plugins]
+nix = "https://github.com/chadac/mise-nix"
+
+[tasks.shfmt-run]
+run = "shfmt -w -i 2 -ci ./bin/*"
+
+[tasks.shfmt-check]
+run = "shfmt -d -i 2 -ci ./bin/*"
+
+[tasks.shellcheck]
+run = "shellcheck ./bin/*"
+
+[tasks.format]
+depends = ["shfmt-run"]
+
+[tasks.check]
+depends = ["shellcheck", "shfmt-check"]
+
+[tasks.test]
+run = "podman run --disable-content-trust -v ${PWD}:/mise/nix --rm docker.io/nixos/nix /usr/bin/env bash -c 'nix-channel --update && /mise/nix/test.sh'"

@@ -12,14 +12,22 @@ jobs:
     - uses: cachix/install-nix-action@v22
       with:
         nix_path: nixpkgs=channel:nixos-unstable
-    - uses: workflow/nix-shell-action@v3
+    - uses: jdx/mise-action@v2
       with:
-        packages: shfmt,shellcheck
-        script: |
-          make format-check
-          make lint
+        install: true
+        cache: true
+        experimental: true
+    - run: mise run check
   tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run: make test
+    - uses: cachix/install-nix-action@v22
+      with:
+        nix_path: nixpkgs=channel:nixos-unstable
+    - uses: jdx/mise-action@v2
+      with:
+        install: true
+        cache: true
+        experimental: true
+    - run: mise run test
