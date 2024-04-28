@@ -12,6 +12,12 @@ versions of `nixpkgs` when needed.
 
 ## Install
 
+### Prerequisites
+
+* [Nix](https://nixos.org/download/)
+
+### Instructions
+
 ```bash
 mise plugin install git@github.com/chadac/mise-nix
 ```
