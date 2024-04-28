@@ -44,14 +44,25 @@ install_nix() {
     rm -r "$destdir"
   fi
 
-  local ref=""
+  local branch
+  local pkg
   case $package in
-    *:*)
+    */*)
       # this is an absolute reference
-      ref=$package
+      branch=${package%%"/"*}
+      pkg=${package#*"/"}
       ;;
     *)
-      ref="github:NixOS/nixpkgs/nixpkgs-unstable#${package}"
+      branch="nixpkgs-unstable"
+      pkg=$package
+      ;;
+  esac
+
+  # TODO: support generalized references
+  local ref
+  case $flake in
+    *)
+      ref="github:NixOS/nixpkgs/${branch}#${pkg}"
       ;;
   esac
 

@@ -3,7 +3,7 @@
 [Nix](https://nixos.org) plugin for the [mise](https://mise.jdx.dev/) version manager.
 
 Enables installing packages via `nix` rather than using the regular
-`mise` builders.
+`mise` builders. 
 
 ## Install
 
@@ -21,10 +21,13 @@ mise install nix@python310
 
 By default it sources package versions from
 `github:NixOS/nixpkgs/nixpkgs-unstable`; if you'd prefer to specify a
-separate branch or alternative version, use
+separate git ref (as a branch, commit, tag, etc) or alternative
+version, use
 
 ```bash
-mise install nix@github:NixOS/nixpkgs/nixpkgs-stable#python310
+mise install nix@release-23.11/python310
 ```
 
-NOTE: Gotta figure out how to make the above work
+## TODOs
+
+* support generic flake references
