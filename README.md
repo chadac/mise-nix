@@ -15,6 +15,7 @@ versions of `nixpkgs` when needed.
 ### Prerequisites
 
 * [Nix](https://nixos.org/download/)
+* `mise`, preferably via `nix shell nixpkgs#mise`
 
 ### Instructions
 
