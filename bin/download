@@ -1,0 +1,11 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p bash gawk
+
+source "$ASDF_PLUGIN_PATH/bin/lib.sh"
+
+install_nix $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
+
+if install_nix $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH; then
+  >&2 echo "failed to build nix expression; see logs."
+  exit 1
+fi

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "https://search.nixos.org/packages"
