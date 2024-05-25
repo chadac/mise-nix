@@ -20,7 +20,7 @@ versions of `nixpkgs` when needed.
 ### Instructions
 
 ```bash
-mise plugin install git@github.com/chadac/mise-nix
+mise plugin install https://github.com/chadac/mise-nix.git
 ```
 
 ## Usage
